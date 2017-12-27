@@ -1,0 +1,29 @@
+service:
+  name: mailchimp-service
+
+# Add the serverless-webpack plugin
+plugins:
+  - serverless-webpack
+
+provider:
+  name: aws
+  runtime: nodejs6.10
+  stage: prod
+  region: ca-central-1
+  memorySize: 128
+
+  environment:
+    SLACK_HOOKS_URL: ${file(./config.yml):SLACK_HOOKS_URL}
+    MAILCHIMP_API_KEY: ${file(./config.yml):MAILCHIMP_API_KEY}
+    MAILCHIMP_LIST_ID: ${file(./config.yml):MAILCHIMP_LIST_ID}
+
+functions:
+  # sls webpack invoke -f subscribe
+  subscribe:
+    handler: handler.subscribe
+    events:
+      - http:
+          method: post
+          path: subscribe
+          resp: json
+          cors: true
