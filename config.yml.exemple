@@ -1,3 +1,6 @@
+SERVICE_NAME: mailchimp-service
+STAGE: dev
+REGION: ca-central-1
 SLACK_HOOKS_URL: https://hooks.slack.com/...
 MAILCHIMP_API_KEY: 12345flwend139eudedfbqd-US01
 MAILCHIMP_LIST_ID: 12345abcde
